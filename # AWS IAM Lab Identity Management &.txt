@@ -1,0 +1,68 @@
+# AWS IAM Lab: Identity Management & MFA Configuration
+
+## Overview:
+This lab demonstrates essential AWS Identity and Access Management (IAM) practices including:
+- Creating users with specific permission levels
+- Applying least privilege principles
+- Securing accounts with MFA
+- Testing user access
+- Troubleshooting IAM limitations and errors
+
+---
+
+## Step-by-Step Summary:
+
+### ✅ Step 1: IAM User Creation
+- Logged into AWS Console as root user
+- Navigated to IAM service
+- Created two users:
+  - `AdminUser` with `AdministratorAccess` managed policy
+  - `ReadOnlyUser` with `ReadOnlyAccess` managed policy
+- Set custom passwords for both and enabled "Require password reset"
+
+---
+
+### ✅ Step 2: Enabling MFA (Multi-Factor Authentication)
+- Navigated to each user’s **Security Credentials** tab
+- Selected **“Assign MFA device”**
+- Chose **“Virtual MFA device”**
+- Used Google Authenticator to scan the QR code
+- Entered two consecutive 6-digit codes to complete setup
+- Successfully enabled MFA on both users
+
+---
+
+### ✅ Step 3: Testing IAM User Login & Permissions
+- Logged out of root account
+- Retrieved account-specific IAM sign-in URL
+- Logged in with:
+  - `ReadOnlyUser`:
+    - Could access S3 and view resources
+    - Blocked from launching EC2, modifying IAM, etc.
+  - `AdminUser`:
+    - Full access to all services including EC2, IAM, and S3
+- Verified permissions match attached policies
+
+---
+
+### ✅ Troubleshooting:
+- Encountered AWS quota errors preventing policy attachment
+- Used Incognito mode and switched regions
+- Identified the cause: new AWS account restrictions
+- Temporarily used root user for simulation
+- Resolved login error due to password policy by relaxing complexity requirements
+
+---
+
+## Key Concepts Demonstrated:
+- IAM Role-Based Access Control (RBAC)
+- AWS managed policies vs. custom policies
+- Principle of least privilege
+- Virtual MFA setup for enhanced account security
+- IAM troubleshooting and access testing
+
+---
+
+## Next Steps:
+- Push this lab to GitHub under `cloud-security-labs` repo
+- Begin next cloud project: **S3 Bucket Misconfig & Hardening Lab**
